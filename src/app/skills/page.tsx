@@ -5,7 +5,7 @@ function Skills() {
   return (
     <div>
       This is skills page
-      <Image src={images.testImage} width={500} height={500} alt="image" />
+      <Image src={images.testImage} quality={100} alt="image" />
     </div>
   );
 }

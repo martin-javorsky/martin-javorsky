@@ -1,10 +1,11 @@
+import { images } from "@/constants/common/images";
 import Image from "next/image";
 
 function Skills() {
   return (
     <div>
       This is skills page
-      <Image src="/assets/test_image.jpg" width={500} height={500} alt="image" />
+      <Image src={images.testImage} width={500} height={500} alt="image" />
     </div>
   );
 }

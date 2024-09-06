@@ -1,7 +1,4 @@
 /** @type {import('next').NextConfig} */
-import path from "path";
-
-const __dirname = new URL(".", import.meta.url).pathname;
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -12,9 +9,27 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@": path.resolve(__dirname, "./"),
+    config.module.rules = [
+      ...config.module.rules,
+      /**
+       * Enables tree shaking of index.ts files. This is handy when the project uses index.ts as
+       * barrel files for reexporting exports from other files (for instance, within a folder).
+       *
+       * These files shouldn't contain any side-effects.
+       * https://github.com/vercel/next.js/issues/12557#issuecomment-994278512
+       */
+      {
+        test: /index.ts/i,
+        sideEffects: false,
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+    ];
+    config.experiments = {
+      ...config.experiments,
+      topLevelAwait: true,
     };
     return config;
   },

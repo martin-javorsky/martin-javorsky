@@ -1,4 +1,4 @@
-import { images } from "constants/common/images";
+import { images } from "@/constants/common/images";
 import Image from "next/image";
 
 function Skills() {

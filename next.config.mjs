@@ -10,7 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(process.cwd(), "src");
+    config.resolve.alias["@"] = path.resolve("./src");
     return config;
   },
 };
